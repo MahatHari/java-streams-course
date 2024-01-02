@@ -16,44 +16,53 @@ public class Lecture7 {
 
   @Test
   public void count() throws Exception {
-    long count = MockData.getPeople()
-        .stream()
-        .filter(person -> person.getGender().equalsIgnoreCase("female"))
-        .count();
+
+    long count= MockData.getPeople()
+            .stream()
+            .filter(person -> person.getGender().equalsIgnoreCase("female"))
+            .count();
     System.out.println(count);
+
   }
 
   @Test
   public void min() throws Exception {
-    double min = MockData.getCars()
-        .stream()
-        .filter(car -> car.getColor().equalsIgnoreCase("yellow"))
-        .mapToDouble(Car::getPrice)
-        .min()
-        .orElse(0);
-    System.out.println(min);
+
+   double cheapeastYellowCar=  MockData.getCars()
+             .stream()
+             .filter(car -> car.getColor().equalsIgnoreCase("yellow"))
+             .mapToDouble(Car::getPrice)
+             .min()
+           .orElse(0);
+
+    System.out.println(cheapeastYellowCar);
+
+
   }
 
   @Test
   public void max() throws Exception {
-    double max = MockData.getCars()
-        .stream()
-        .filter(car -> car.getColor().equalsIgnoreCase("yellow"))
-        .mapToDouble(Car::getPrice)
-        .max()
-        .orElse(0);
-    System.out.println(max);
+
+    double expensiveYellowCar= MockData.getCars()
+            .stream()
+            .filter(car -> car.getColor().equalsIgnoreCase("yellow"))
+            .mapToDouble(Car::getPrice)
+            .max()
+            .orElse(0);
+
+    System.out.println(expensiveYellowCar);
+
   }
 
 
   @Test
   public void average() throws Exception {
     List<Car> cars = MockData.getCars();
-//    ImmutableList<Car> cars = ImmutableList.of();
-    double averagePrice = cars.stream()
-        .mapToDouble(Car::getPrice)
-        .average()
-        .orElse(0);
+
+      double averagePrice = cars.stream()
+              .mapToDouble(Car::getPrice)
+              .average()
+              .orElse(0);
     System.out.println(averagePrice);
 
   }
@@ -81,7 +90,7 @@ public class Lecture7 {
     System.out.println(statistics.getCount());
     System.out.println(statistics.getMax());
     System.out.println(statistics.getMin());
-    System.out.println(statistics.getSum());
+    System.out.println(BigDecimal.valueOf(statistics.getSum()));
   }
 
 }

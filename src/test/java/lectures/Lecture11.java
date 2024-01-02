@@ -12,13 +12,11 @@ public class Lecture11 {
   public void joiningStrings() throws Exception {
     List<String> names = ImmutableList.of("anna", "john", "marcos", "helena", "yasmin");
 
-    String join = "";
-
-    for(String name : names) {
-      join += name + ", ";
+    String joinedString=" ";
+    for(String name: names){
+      joinedString +=name +", ";
     }
-
-    System.out.println(join.substring(0, join.length()-2));
+    System.out.println(joinedString.substring(0,joinedString.length()-2));
 
   }
 
@@ -26,10 +24,11 @@ public class Lecture11 {
   public void joiningStringsWithStream() throws Exception {
     List<String> names = ImmutableList.of("anna", "john", "marcos", "helena", "yasmin");
 
-    String join = names.stream()
-        .map(String::toUpperCase)
-        .collect(Collectors.joining("|"));
+    // without stream
+    String sentence1= String.join(", ", names);
+    // with stream
+    String sentence2 = names.stream().collect(Collectors.joining(", "));
+    System.out.println(sentence2);
 
-    System.out.println(join);
   }
 }

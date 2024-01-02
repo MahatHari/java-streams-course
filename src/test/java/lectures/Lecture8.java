@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import mockdata.MockData;
 import org.assertj.core.util.Lists;
@@ -16,11 +17,11 @@ public class Lecture8 {
   @Test
   public void simpleGrouping() throws Exception {
     Map<String, List<Car>> grouping = MockData.getCars()
-        .stream()
-        .collect(Collectors.groupingBy(Car::getMake));
+            .stream()
+            .collect(Collectors.groupingBy(Car::getMake));
 
-    grouping.forEach((make, cars) -> {
-      System.out.println(make);
+    grouping.forEach((make, cars)->{
+      System.out.println(make+ " " + cars.size() );
       cars.forEach(System.out::println);
     });
   }
@@ -40,10 +41,12 @@ public class Lecture8 {
             "Alex"
         );
 
-    Map<String, Long> counting = names.stream()
-        .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+ Map<String, Long> counting=   names.stream()
+            .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
-    counting.forEach((name, count) -> System.out.println(name + " > " + count));
+ counting.forEach((name, number)->{
+   System.out.println(name + "   " + number);
+ });
   }
 
 }
